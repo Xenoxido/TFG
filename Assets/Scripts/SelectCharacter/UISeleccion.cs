@@ -25,15 +25,16 @@ public class UISeleccion : MonoBehaviour
     {       
         float angleRot = selection.transform.eulerAngles.y;
         float delay = angleRot % 90;
-        Debug.Log("Rotation: " + delay);
+        //Debug.Log("Rotation: " + delay);
 
         //Esta guarda es para saber cuando esta dentro de la rotacion delayRot que permite hacer visible el boton de seleccion,
         //el 0 y 90 son casos especiales, para ello esta la primera condición.
         if ((delay <= 90.0f && delay > (90.0f-delayRot)) || (delay < delayRot && delay > (-delayRot)))
         {
             buttonSelection.interactable = true;
-            character.text = "Personaje " + selectionManager.characterSelected;
-            
+            if(selectionManager.characterSelected == 1) character.text = "Ethan";
+            else if (selectionManager.characterSelected == 2) character.text = "Personaje 2";
+            else character.text = "Personaje 3";
         }
         else
         {
