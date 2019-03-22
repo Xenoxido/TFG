@@ -14,7 +14,9 @@ public class CharMovement : MonoBehaviour
     public float minFall = -1.5f;
     private float _vertSpeed;
     //Booleanos para los golpes
-    private bool hoop = false, upper = false, lowkick = false, kick = false, jump = false;
+    private bool golpe = false, jump = false;
+    //Ya no se usan estos bools
+    //bool hoop = false, upper = false, lowkick = false, kick = false,
     // Start is called before the first frame update
     void Start()
     {
@@ -29,34 +31,34 @@ public class CharMovement : MonoBehaviour
         Vector3 movement = Vector3.zero;
         float horInput = Input.GetAxis("Horizontal");
         //Golpes: Puñetazo, Gancho, Patada baja, Patada alta
-        if (Input.GetKeyDown(KeyCode.J) && !jump && !kick && !lowkick && !upper && !hoop) //Reconocimiento de la patada, la corutina lo para
+        if (Input.GetKeyDown(KeyCode.J) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
         {
             _animator.SetBool("Hoop", true);
-            hoop = true;
+            golpe = true;
             StartCoroutine(offHoop());
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && !jump && !kick && !lowkick && !hoop && !upper) //Reconocimiento de la patada, la corutina lo para
+        if (Input.GetKeyDown(KeyCode.K) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
         {
             _animator.SetBool("Upper", true);
-            upper = true;
+            golpe = true;
             StartCoroutine(offUpper());
         }
 
-        if (Input.GetKeyDown(KeyCode.U) && !jump && !hoop && !kick && !upper && !lowkick) //Reconocimiento de la patada, la corutina lo para
+        if (Input.GetKeyDown(KeyCode.U) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
         {
             _animator.SetBool("LowKick", true);
-            lowkick = true;
+            golpe = true;
             StartCoroutine(offLowKick());
         }
 
-        if (Input.GetKeyDown(KeyCode.I) && !jump && !hoop && !lowkick && !upper && !kick) //Reconocimiento de la patada, la corutina lo para
+        if (Input.GetKeyDown(KeyCode.I) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
         {
             _animator.SetBool("Kick", true);
-            kick = true;
+            golpe = true;
             StartCoroutine(offKick());
         }
-        if (kick || hoop || lowkick || upper) horInput = 0.0f;
+        if (golpe) horInput = 0.0f;
 
         if (horInput != 0)
         {
@@ -71,7 +73,7 @@ public class CharMovement : MonoBehaviour
         if (_charController.isGrounded)
         {
             jump = false;
-            if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && !hoop && !upper && !lowkick && !kick)
+            if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && !golpe)
             {
                 _vertSpeed = jumpSpeed;
                 jump = true;
@@ -105,7 +107,7 @@ public class CharMovement : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         _animator.SetBool("Hoop", false);
         yield return new WaitForSeconds(.05f);
-        hoop = false;
+        golpe = false;
     }
 
     private IEnumerator offUpper()
@@ -113,7 +115,7 @@ public class CharMovement : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         _animator.SetBool("Upper", false);
         yield return new WaitForSeconds(.05f);
-        upper = false;
+        golpe = false;
     }
 
     private IEnumerator offLowKick()
@@ -121,7 +123,7 @@ public class CharMovement : MonoBehaviour
         yield return new WaitForSeconds(.65f);
         _animator.SetBool("LowKick", false);
         yield return new WaitForSeconds(.05f);
-        lowkick = false;
+        golpe = false;
     }
     
     private IEnumerator offKick()
@@ -129,7 +131,7 @@ public class CharMovement : MonoBehaviour
         yield return new WaitForSeconds(.65f);
         _animator.SetBool("Kick", false);
         yield return new WaitForSeconds(.05f);
-        kick = false;
+        golpe = false;
     }
     
 }
