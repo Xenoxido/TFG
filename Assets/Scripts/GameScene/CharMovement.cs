@@ -29,28 +29,28 @@ public class CharMovement : MonoBehaviour
         Vector3 movement = Vector3.zero;
         float horInput = Input.GetAxis("Horizontal");
         //Golpes: Puñetazo, Gancho, Patada baja, Patada alta
-        if (Input.GetKeyDown(KeyCode.J) && !jump && !kick && !lowkick && !upper) //Reconocimiento de la patada, la corutina lo para
+        if (Input.GetKeyDown(KeyCode.J) && !jump && !kick && !lowkick && !upper && !hoop) //Reconocimiento de la patada, la corutina lo para
         {
             _animator.SetBool("Hoop", true);
             hoop = true;
             StartCoroutine(offHoop());
         }
 
-        if (Input.GetKeyDown(KeyCode.K) && !jump && !kick && !lowkick && !hoop) //Reconocimiento de la patada, la corutina lo para
+        if (Input.GetKeyDown(KeyCode.K) && !jump && !kick && !lowkick && !hoop && !upper) //Reconocimiento de la patada, la corutina lo para
         {
             _animator.SetBool("Upper", true);
             upper = true;
             StartCoroutine(offUpper());
         }
 
-        if (Input.GetKeyDown(KeyCode.U) && !jump && !hoop && !kick && !upper) //Reconocimiento de la patada, la corutina lo para
+        if (Input.GetKeyDown(KeyCode.U) && !jump && !hoop && !kick && !upper && !lowkick) //Reconocimiento de la patada, la corutina lo para
         {
             _animator.SetBool("LowKick", true);
             lowkick = true;
             StartCoroutine(offLowKick());
         }
 
-        if (Input.GetKeyDown(KeyCode.I) && !jump && !hoop && !lowkick && !upper) //Reconocimiento de la patada, la corutina lo para
+        if (Input.GetKeyDown(KeyCode.I) && !jump && !hoop && !lowkick && !upper && !kick) //Reconocimiento de la patada, la corutina lo para
         {
             _animator.SetBool("Kick", true);
             kick = true;
@@ -102,33 +102,33 @@ public class CharMovement : MonoBehaviour
     //Corrutinas para detener las animaciones de los golpes
     private IEnumerator offHoop()
     {
-        yield return new WaitForSeconds(1);
-        _animator.SetBool("Hoop", false);
         yield return new WaitForSeconds(.5f);
+        _animator.SetBool("Hoop", false);
+        yield return new WaitForSeconds(.05f);
         hoop = false;
     }
 
     private IEnumerator offUpper()
     {
-        yield return new WaitForSeconds(1);
-        _animator.SetBool("Upper", false);
         yield return new WaitForSeconds(.5f);
+        _animator.SetBool("Upper", false);
+        yield return new WaitForSeconds(.05f);
         upper = false;
     }
 
     private IEnumerator offLowKick()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.65f);
         _animator.SetBool("LowKick", false);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.05f);
         lowkick = false;
     }
     
     private IEnumerator offKick()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.65f);
         _animator.SetBool("Kick", false);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.05f);
         kick = false;
     }
     
