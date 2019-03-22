@@ -13,7 +13,8 @@ public class CharMovement : MonoBehaviour
     public float terminalVelocity = -10.0f;
     public float minFall = -1.5f;
     private float _vertSpeed;
-    private bool kick = false, hoop = false, jump = false;
+    //Booleanos para los golpes
+    private bool hoop = false, upper = false, lowkick = false, kick = false, jump = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,19 +28,35 @@ public class CharMovement : MonoBehaviour
     {
         Vector3 movement = Vector3.zero;
         float horInput = Input.GetAxis("Horizontal");
-        if (Input.GetKeyDown(KeyCode.J) && !jump && !hoop) //Reconocimiento de la patada, la corutina lo para
-        {
-            _animator.SetBool("Kick", true);
-            kick = true;
-            StartCoroutine(offKick());
-        }
-        if (Input.GetKeyDown(KeyCode.K) && !jump && !kick) //Reconocimiento de la patada, la corutina lo para
+        //Golpes: Puñetazo, Gancho, Patada baja, Patada alta
+        if (Input.GetKeyDown(KeyCode.J) && !jump && !kick && !lowkick && !upper) //Reconocimiento de la patada, la corutina lo para
         {
             _animator.SetBool("Hoop", true);
             hoop = true;
             StartCoroutine(offHoop());
         }
-        if (kick || hoop) horInput = 0.0f;
+
+        if (Input.GetKeyDown(KeyCode.K) && !jump && !kick && !lowkick && !hoop) //Reconocimiento de la patada, la corutina lo para
+        {
+            _animator.SetBool("Upper", true);
+            upper = true;
+            StartCoroutine(offUpper());
+        }
+
+        if (Input.GetKeyDown(KeyCode.U) && !jump && !hoop && !kick && !upper) //Reconocimiento de la patada, la corutina lo para
+        {
+            _animator.SetBool("LowKick", true);
+            lowkick = true;
+            StartCoroutine(offLowKick());
+        }
+
+        if (Input.GetKeyDown(KeyCode.I) && !jump && !hoop && !lowkick && !upper) //Reconocimiento de la patada, la corutina lo para
+        {
+            _animator.SetBool("Kick", true);
+            kick = true;
+            StartCoroutine(offKick());
+        }
+        if (kick || hoop || lowkick || upper) horInput = 0.0f;
 
         if (horInput != 0)
         {
@@ -54,7 +71,7 @@ public class CharMovement : MonoBehaviour
         if (_charController.isGrounded)
         {
             jump = false;
-            if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W))
+            if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && !hoop && !upper && !lowkick && !kick)
             {
                 _vertSpeed = jumpSpeed;
                 jump = true;
@@ -82,15 +99,7 @@ public class CharMovement : MonoBehaviour
         
         
     }
-
-    private IEnumerator offKick()
-    {
-        yield return new WaitForSeconds(1);
-        _animator.SetBool("Kick", false);
-        yield return new WaitForSeconds(.5f);
-        kick = false;
-    }
-
+    //Corrutinas para detener las animaciones de los golpes
     private IEnumerator offHoop()
     {
         yield return new WaitForSeconds(1);
@@ -98,4 +107,29 @@ public class CharMovement : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         hoop = false;
     }
+
+    private IEnumerator offUpper()
+    {
+        yield return new WaitForSeconds(1);
+        _animator.SetBool("Upper", false);
+        yield return new WaitForSeconds(.5f);
+        upper = false;
+    }
+
+    private IEnumerator offLowKick()
+    {
+        yield return new WaitForSeconds(1);
+        _animator.SetBool("LowKick", false);
+        yield return new WaitForSeconds(.5f);
+        lowkick = false;
+    }
+    
+    private IEnumerator offKick()
+    {
+        yield return new WaitForSeconds(1);
+        _animator.SetBool("Kick", false);
+        yield return new WaitForSeconds(.5f);
+        kick = false;
+    }
+    
 }
