@@ -16,7 +16,7 @@ public class UISeleccion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        character.text = "Personaje " + selectionManager.characterSelected;
+        character.text = "Atenea";
         delayRot = 5.0f;
     }
 
@@ -33,7 +33,7 @@ public class UISeleccion : MonoBehaviour
         {
             buttonSelection.interactable = true;
             if(selectionManager.characterSelected == 1) character.text = "Ethan";
-            else if (selectionManager.characterSelected == 2) character.text = "Personaje 2";
+            else if (selectionManager.characterSelected == 2) character.text = "Atenea";
             else character.text = "Personaje 3";
         }
         else

@@ -75,7 +75,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.00001
   m_TransitionOffset: 0
   m_ExitTime: 0.8958334
   m_HasExitTime: 0
@@ -100,7 +100,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.11543938
+  m_TransitionDuration: 0.00001
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
@@ -347,7 +347,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.16213396
+  m_TransitionDuration: 0.00001
   m_TransitionOffset: 0
   m_ExitTime: 0.49402943
   m_HasExitTime: 0
@@ -372,7 +372,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.11546731
+  m_TransitionDuration: 0.00001
   m_TransitionOffset: 0
   m_ExitTime: 0.8958334
   m_HasExitTime: 0
@@ -397,7 +397,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.04433766
+  m_TransitionDuration: 0.00001
   m_TransitionOffset: 0
   m_ExitTime: 0.5786517
   m_HasExitTime: 0
@@ -512,7 +512,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HumanoidIdle
+  m_Name: Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -544,7 +544,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HumanoidMidAirLeft
+  m_Name: Air
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -571,7 +571,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LowKick
+  m_Name: U
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -598,7 +598,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HighKick
+  m_Name: I
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -625,7 +625,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hoop
+  m_Name: J
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -652,7 +652,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Upper
+  m_Name: K
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -679,7 +679,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HumanoidRun
+  m_Name: Run
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
