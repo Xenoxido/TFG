@@ -5,8 +5,13 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     private string namechar;
+    private string namenemy;
     [SerializeField] private GameObject ethan;
     [SerializeField] private GameObject atenea;
+
+    [SerializeField] private GameObject derrick;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,20 +19,16 @@ public class GameController : MonoBehaviour
         switch (namechar)
         {
             case "Ethan":
-                Instantiate(ethan);
+                Instantiate(ethan).gameObject.tag = "Player";
                 break;
             case "Atenea":
-                Instantiate(atenea);
+                Instantiate(atenea).gameObject.tag = "Player";
                 break;
             default:
                 break;
         }
 
-    }
+        Instantiate(derrick).gameObject.tag = "Enemy";
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

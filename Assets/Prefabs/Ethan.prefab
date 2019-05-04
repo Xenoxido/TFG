@@ -537,7 +537,7 @@ GameObject:
   - component: {fileID: 547014157}
   - component: {fileID: 547014156}
   - component: {fileID: 547014155}
-  - component: {fileID: 547014158}
+  - component: {fileID: 5211048785926626508}
   m_Layer: 0
   m_Name: Ethan
   m_TagString: Untagged
@@ -600,7 +600,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.8, z: 0}
---- !u!114 &547014158
+--- !u!114 &5211048785926626508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -609,14 +609,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 547014154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 249e3cf72adabf84db377efd321b4802, type: 3}
+  m_Script: {fileID: 11500000, guid: 005c8ed7d98f316419c5368897ecac4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
-  jumpSpeed: 12
+  life: 200
+  jumpSpeed: 15
   gravity: -9.8
   terminalVelocity: -10
   minFall: -1.5
+  Jtime: 0.5
+  Ktime: 0.5
+  Utime: 0.65
+  Itime: 0.65
+  JDamage: 20
+  KDamage: 20
+  UDamage: 50
+  IDamage: 50
 --- !u!1 &619575821
 GameObject:
   m_ObjectHideFlags: 0

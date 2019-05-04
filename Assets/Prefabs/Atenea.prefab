@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3150512805401481871}
   - component: {fileID: 881692700410748472}
   - component: {fileID: 1549313906}
-  - component: {fileID: 2173103900497495878}
+  - component: {fileID: 6404679352076345107}
   m_Layer: 0
   m_Name: Atenea
   m_TagString: Untagged
@@ -72,7 +72,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &2173103900497495878
+--- !u!114 &6404679352076345107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,14 +81,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1549313904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 855b805f3d8e862439c175463178bc61, type: 3}
+  m_Script: {fileID: 11500000, guid: 005c8ed7d98f316419c5368897ecac4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  life: 250
   jumpSpeed: 15
   gravity: -9.8
   terminalVelocity: -10
   minFall: -1.5
+  Jtime: 0.76
+  Ktime: 1.3
+  Utime: 1
+  Itime: 1
+  JDamage: 20
+  KDamage: 50
+  UDamage: 40
+  IDamage: 40
 --- !u!1 &160874056847125832
 GameObject:
   m_ObjectHideFlags: 0
