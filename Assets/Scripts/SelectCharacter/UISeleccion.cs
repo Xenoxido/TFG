@@ -34,7 +34,7 @@ public class UISeleccion : MonoBehaviour
             buttonSelection.interactable = true;
             if(selectionManager.characterSelected == 1) character.text = "Ethan";
             else if (selectionManager.characterSelected == 2) character.text = "Atenea";
-            else character.text = "Personaje 3";
+            else character.text = "Eve";
         }
         else
         {

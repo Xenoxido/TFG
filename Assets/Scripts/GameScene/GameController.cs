@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     private string namenemy;
     [SerializeField] private GameObject ethan;
     [SerializeField] private GameObject atenea;
+    [SerializeField] private GameObject eve;
 
     [SerializeField] private GameObject derrick;
 
@@ -23,6 +24,9 @@ public class GameController : MonoBehaviour
                 break;
             case "Atenea":
                 Instantiate(atenea).gameObject.tag = "Player";
+                break;
+            case "Eve":
+                Instantiate(eve).gameObject.tag = "Player";
                 break;
             default:
                 break;

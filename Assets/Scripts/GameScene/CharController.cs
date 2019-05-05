@@ -68,7 +68,7 @@ public class CharController : MonoBehaviour
                 StartCoroutine(Died());
             }
 
-            if(enemy.GetComponent<EnemigoController>().Vida <= 0)
+            if(enemy.GetComponent<EnemigoController>().Vida <= 0 && !golpe)
             {
                 enemigoMuerto = true;
                 _animator.SetBool("Win", true);
