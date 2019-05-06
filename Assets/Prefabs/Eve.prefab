@@ -1664,7 +1664,7 @@ MonoBehaviour:
   minFall: -1.5
   Jtime: 0.9
   Ktime: 0.9
-  Utime: 1.6
+  Utime: 0.9
   Itime: 2
   JDamage: 20
   KDamage: 20

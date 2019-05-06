@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.AI;
 
 public class EnemigoController : MonoBehaviour
@@ -18,10 +19,12 @@ public class EnemigoController : MonoBehaviour
     public float speed;
     public bool muerto;
     public float MaxVida;
+    private bool playerMuerto;
 
     private void Awake()
     {
         muerto = false;
+        playerMuerto = false;
         speed = nav.speed;
         MaxVida = Vida;
     }
@@ -44,8 +47,9 @@ public class EnemigoController : MonoBehaviour
                 target = player.transform;
             }
         }
-        else if (player.GetComponent<CharController>().life <= 0)
+        else if (player.GetComponent<CharController>().life <= 0 && !playerMuerto)
         {
+            playerMuerto = true;
             StartCoroutine(PlayerDied());
             return;
         }
@@ -107,7 +111,7 @@ public class EnemigoController : MonoBehaviour
     void Ataque()
     {
         Invoke("AF", 1.5f);
-        if (distancia <= 2 && AtacBool == true && !muerto)
+        if (distancia <= 2 && AtacBool == true && !muerto && !playerMuerto)
         {
             player.SendMessage("HurtLife", ataque);
         }
@@ -129,5 +133,10 @@ public class EnemigoController : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         transform.position = target.position;
         anim.SetBool("playerMuerto", true);
+        if (PlayerPrefs.GetString("WinEnemy2") == "Yes") PlayerPrefs.SetString("EnemyVictory", "Yes");
+        if (PlayerPrefs.GetString("WinEnemy1") == "No") PlayerPrefs.SetString("WinEnemy1", "Yes");
+        else PlayerPrefs.SetString("WinEnemy2", "Yes");
+        yield return new WaitForSeconds(5);
+        if(PlayerPrefs.GetString("EnemyVictory")!="Yes") SceneManager.LoadScene("GameScene");
     }
 }

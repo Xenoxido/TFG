@@ -51,6 +51,13 @@ public class UISeleccion : MonoBehaviour
     public void onClickSeleccionado()
     {
         PlayerPrefs.SetString("character", character.text);
+        PlayerPrefs.SetString("WinPlayer1", "No");
+        PlayerPrefs.SetString("WinPlayer2", "No");
+        PlayerPrefs.SetString("WinEnemy1", "No");
+        PlayerPrefs.SetString("WinEnemy2", "No");
+        PlayerPrefs.SetString("PlayerVictory", "No");
+        PlayerPrefs.SetString("EnemyVictory", "No");
+
         SceneManager.LoadScene("GameScene");
     }
 }

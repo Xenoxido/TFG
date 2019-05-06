@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 public class CharController : MonoBehaviour
@@ -50,6 +51,7 @@ public class CharController : MonoBehaviour
         _charController = GetComponent<CharacterController>();
         _vertSpeed = minFall;
         _animator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -208,18 +210,21 @@ public class CharController : MonoBehaviour
         _animator.SetBool("Dead", false);
     }
 
-    private IEnumerator EnemyDied()
-    {
-        yield return new WaitForSeconds(0.5f);
-        _animator.SetBool("Win", false);
-    }
-
-
-
     public void HurtLife(int damage)
     {
         life -= damage;
         Debug.Log("Hurted: " + damage.ToString() + ", Total Life: " + life.ToString());
     }
-    
+
+    private IEnumerator EnemyDied()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _animator.SetBool("Win", false);
+        if (PlayerPrefs.GetString("WinPlayer2") == "Yes") PlayerPrefs.SetString("PlayerVictory", "Yes");
+        if (PlayerPrefs.GetString("WinPlayer1") == "No") PlayerPrefs.SetString("WinPlayer1", "Yes");
+        else PlayerPrefs.SetString("WinPlayer2", "Yes");
+        yield return new WaitForSeconds(5);
+        if(PlayerPrefs.GetString("PlayerVictory")!="Yes")SceneManager.LoadScene("GameScene");
+    }
+
 }
