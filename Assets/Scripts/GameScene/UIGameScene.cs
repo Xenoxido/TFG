@@ -18,6 +18,11 @@ public class UIGameScene : MonoBehaviour
     [SerializeField] private Image WinEnemy1;
     [SerializeField] private Image WinEnemy2;
 
+    //Musica
+    [SerializeField] private AudioSource music;
+    [SerializeField] private AudioClip victoryClip;
+    [SerializeField] private AudioClip loseClip;
+
     private CharController player;
     private EnemigoController enemigo;
     private int MaxVidaPlayer;

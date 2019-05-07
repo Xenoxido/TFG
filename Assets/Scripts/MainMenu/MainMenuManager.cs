@@ -6,7 +6,13 @@ using UnityEngine.SceneManagement; //para las escenas
 
 public class MainMenuManager : MonoBehaviour
 {
-
+    [SerializeField] private GameObject music;
+    private void Awake()
+    {
+        if (GameObject.FindGameObjectWithTag("BattleSound") != null) Destroy(GameObject.FindGameObjectWithTag("BattleSound"));
+        if (GameObject.FindGameObjectsWithTag("Music").Length > 1) Destroy(music);
+        else DontDestroyOnLoad(music);
+    }
     // Start is called before the first frame update
     void Start()
     {

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - UIController
+  - Music
+  - BattleSound
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CharacterController))]
 public class CharController : MonoBehaviour
 {
+    [SerializeField] private AudioSource audio;
+    [SerializeField] private AudioClip punch;
+    [SerializeField] private AudioClip kick;
     //Player Parameters
     public float life;
     public float MaxVida;
@@ -167,7 +170,7 @@ public class CharController : MonoBehaviour
     //Corrutinas para detener las animaciones de los golpes
     private IEnumerator J()
     {
-        if(distancia < 2 && enemy != null) enemy.SendMessage("HurtLife", JDamage);
+        if (distancia < 2 && enemy != null) { enemy.SendMessage("HurtLife", JDamage); audio.PlayOneShot(punch); }
         yield return new WaitForSeconds(Jtime);
         _animator.SetBool("Hoop", false);
         yield return new WaitForSeconds(.05f);
@@ -178,7 +181,7 @@ public class CharController : MonoBehaviour
     {
         
         yield return new WaitForSeconds(Ktime);
-        if (distancia < 2 && enemy != null) enemy.SendMessage("HurtLife", KDamage);
+        if (distancia < 2 && enemy != null) { enemy.SendMessage("HurtLife", KDamage); audio.PlayOneShot(punch); }
         _animator.SetBool("Upper", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;
@@ -188,7 +191,7 @@ public class CharController : MonoBehaviour
     {
         
         yield return new WaitForSeconds(Utime);
-        if (distancia < 2 && enemy != null) enemy.SendMessage("HurtLife", UDamage);
+        if (distancia < 2 && enemy != null) { enemy.SendMessage("HurtLife", UDamage); audio.PlayOneShot(kick); }
         _animator.SetBool("LowKick", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;
@@ -198,7 +201,7 @@ public class CharController : MonoBehaviour
     {
         
         yield return new WaitForSeconds(Itime);
-        if (distancia < 2 && enemy != null) enemy.SendMessage("HurtLife", IDamage);
+        if (distancia < 2 && enemy != null) { enemy.SendMessage("HurtLife", IDamage); audio.PlayOneShot(kick); }
         _animator.SetBool("Kick", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;

@@ -58,6 +58,6 @@ public class UISeleccion : MonoBehaviour
         PlayerPrefs.SetString("PlayerVictory", "No");
         PlayerPrefs.SetString("EnemyVictory", "No");
 
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("MapSelector");
     }
 }

@@ -103,6 +103,7 @@ public class EnemigoController : MonoBehaviour
                 {
                     anim.SetBool("muerte2", true);
                 }
+                GetComponent<AudioSource>().Stop();
             }
         }
         

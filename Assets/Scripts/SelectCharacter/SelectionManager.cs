@@ -10,6 +10,14 @@ public class SelectionManager : MonoBehaviour
     public int characterSelected;
     public int totalCharacter;
 
+    [SerializeField] private GameObject music;
+    private void Awake()
+    {
+        if (GameObject.FindGameObjectWithTag("BattleSound") != null) Destroy(GameObject.FindGameObjectWithTag("BattleSound"));
+        if (GameObject.FindGameObjectsWithTag("Music").Length > 1) Destroy(music);
+        else DontDestroyOnLoad(music);
+    }
+
     private void Start()
     {
         characterSelected = 2;
