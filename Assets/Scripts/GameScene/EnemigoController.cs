@@ -65,9 +65,11 @@ public class EnemigoController : MonoBehaviour
             movement.x = Mathf.Sign(direction.x);
             transform.rotation = Quaternion.LookRotation(movement);
 
-            if (distancia >= 2)//Distancia a la que se vuelve a activar el agente
+            if (distancia > nav.stoppingDistance)//Distancia a la que se vuelve a activar el agente
             {
                 anim.SetBool("ataque", false);
+                AtacBool = false;
+                CancelInvoke("Ataque");
                 nav.speed = speed;
                 nav.destination = target.position;   
             }
@@ -78,13 +80,13 @@ public class EnemigoController : MonoBehaviour
                 nav.destination = transform.position;
             }
 
-            if (distancia < nav.stoppingDistance && AtacBool == false && player.GetComponent<CharacterController>().isGrounded)
+            if (distancia <= nav.stoppingDistance && AtacBool == false && player.GetComponent<CharacterController>().isGrounded)
             {
                 
                 anim.SetBool("ataque", true);
-
-                Invoke("Ataque", 1.1f);//tiempo que tarda en dar el golpe
                 AtacBool = true;
+                Invoke("Ataque", 1.1f);//tiempo que tarda en dar el golpe
+                
             }
 
             //VIDA
@@ -111,11 +113,14 @@ public class EnemigoController : MonoBehaviour
 
     void Ataque()
     {
-        Invoke("AF", 1.5f);
-        if (distancia <= 2 && AtacBool == true && !muerto && !playerMuerto)
+        Invoke("Ataque", 2.6f);
+        if (distancia <= 1.2 && AtacBool && !muerto && !playerMuerto && player.GetComponent<CharacterController>().isGrounded)
         {
             player.SendMessage("HurtLife", ataque);
+            
+
         }
+        
     }
 
     void AF()
