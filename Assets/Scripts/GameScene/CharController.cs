@@ -8,7 +8,6 @@ public class CharController : MonoBehaviour
 {
     [SerializeField] private AudioSource audio;
     [SerializeField] private AudioClip punch;
-    [SerializeField] private AudioClip kick;
     //Player Parameters
     public float life;
     public float MaxVida;
@@ -191,7 +190,7 @@ public class CharController : MonoBehaviour
     {
         
         yield return new WaitForSeconds(Utime);
-        if (distancia < 2 && enemy != null) { enemy.SendMessage("HurtLife", UDamage); audio.PlayOneShot(kick); }
+        if (distancia < 2 && enemy != null) { enemy.SendMessage("HurtLife", UDamage); audio.PlayOneShot(punch); }
         _animator.SetBool("LowKick", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;
@@ -201,7 +200,7 @@ public class CharController : MonoBehaviour
     {
         
         yield return new WaitForSeconds(Itime);
-        if (distancia < 2 && enemy != null) { enemy.SendMessage("HurtLife", IDamage); audio.PlayOneShot(kick); }
+        if (distancia < 2 && enemy != null) { enemy.SendMessage("HurtLife", IDamage); audio.PlayOneShot(punch); }
         _animator.SetBool("Kick", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;

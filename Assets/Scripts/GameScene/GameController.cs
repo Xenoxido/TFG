@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject music;
+    [SerializeField] private AudioClip fight;
 
     [SerializeField] private Material[] skyboxes = new Material[6];
     private string nameMap;
@@ -27,6 +28,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        music.GetComponent<AudioSource>().PlayOneShot(fight);
         //Gestion de mapas
         nameMap = PlayerPrefs.GetString("map");
         switch (nameMap)

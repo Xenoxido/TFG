@@ -615,7 +615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audio: {fileID: 513034063211279085}
   punch: {fileID: 8300000, guid: d0260b5f2264e6545a240464ad865486, type: 3}
-  kick: {fileID: 8300000, guid: 0efa0de640d9ea247a6d9a9e7467ab02, type: 3}
+  kick: {fileID: 8300000, guid: 34c2019dfd930164daef172acdd57514, type: 3}
   life: 200
   MaxVida: 0
   jumpSpeed: 15

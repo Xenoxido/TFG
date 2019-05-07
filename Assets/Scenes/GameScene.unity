@@ -645,6 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 1786594600}
+  fight: {fileID: 8300000, guid: 2bf9338a5a3013240b932dbe5f2f94ca, type: 3}
   skyboxes:
   - {fileID: 2100000, guid: 765a1025fec3a0c4e9ee4b52ced86876, type: 2}
   - {fileID: 2100000, guid: 47836ab29c4533d48b005ea1163cb12f, type: 2}
