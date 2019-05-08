@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Characters.unity
     guid: 658e7d494e0c825418f3e82f6ea628e9
+  - enabled: 1
+    path: Assets/Scenes/SelectSecondCharacter.unity
+    guid: 98bacbf5346cc0443805c7b0b44634a1
+  - enabled: 1
+    path: Assets/Scenes/MultiplayerScene.unity
+    guid: 936046042274b9045b5c4803c533f863
   m_configObjects: {}

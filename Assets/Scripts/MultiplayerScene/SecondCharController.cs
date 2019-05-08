@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
-public class CharController : MonoBehaviour
+public class SecondCharController : MonoBehaviour
 {
     [SerializeField] private AudioSource audio;
     [SerializeField] private AudioClip punch;
     //Player Parameters
     public float life;
     public float MaxVida;
-    private bool muerto;
+    public bool muerto;
     private bool reached;
     private bool enemigoMuerto;
     
@@ -64,7 +64,7 @@ public class CharController : MonoBehaviour
     {
         if (enemy == null)
         {
-            enemy = GameObject.FindGameObjectWithTag("Enemy");
+            enemy = GameObject.FindGameObjectWithTag("Player");
 
         }else if (!muerto && !enemigoMuerto && !reached)
         {
@@ -75,7 +75,7 @@ public class CharController : MonoBehaviour
                 StartCoroutine(Died());
             }
 
-            if(enemy.GetComponent<EnemigoController>().Vida <= 0 && !golpe)
+            if(enemy.GetComponent<FirstCharController>().life <= 0 && !golpe)
             {
                 enemigoMuerto = true;
                 _animator.SetBool("Win", true);
@@ -83,8 +83,9 @@ public class CharController : MonoBehaviour
             }
 
             Vector3 movement = Vector3.zero;
-            float horInput = Input.GetAxis("Horizontal");
-            //Debug.Log(horInput);
+            float horInput = 0.0f;
+            if (Input.GetKey(KeyCode.LeftArrow)) horInput = -1.0f;
+            else if (Input.GetKey(KeyCode.RightArrow)) horInput = 1.0f;
 
             //Calculo de distancias y direcciones
             distancia = Vector3.Distance(transform.position, enemy.transform.position);
@@ -96,29 +97,29 @@ public class CharController : MonoBehaviour
             //Debug.Log("Direction: "+direction.x+" rotation: "+transform.rotation.y);
 
             //Golpes: Puñetazo, Gancho, Patada baja, Patada alta
-            if (Input.GetKeyDown(KeyCode.J) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
+            if (Input.GetKeyDown(KeyCode.Keypad5) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
             {
                 _animator.SetBool("Hoop", true);
                 golpe = true;
                 StartCoroutine(J());
             }
 
-            if (Input.GetKeyDown(KeyCode.K) && !jump && !golpe && !reached) //Reconocimiento de la patada, la corutina lo para
+            if (Input.GetKeyDown(KeyCode.Keypad6) && !jump && !golpe && !reached) //Reconocimiento de la patada, la corutina lo para
             {
                 _animator.SetBool("Upper", true);
                 golpe = true;
-                Debug.Log("Start");
+                //Debug.Log("Start");
                 StartCoroutine(K());
             }
 
-            if (Input.GetKeyDown(KeyCode.U) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
+            if (Input.GetKeyDown(KeyCode.Keypad8) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
             {
                 _animator.SetBool("LowKick", true);
                 golpe = true;
                 StartCoroutine(U());
             }
 
-            if (Input.GetKeyDown(KeyCode.I) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
+            if (Input.GetKeyDown(KeyCode.Keypad9) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
             {
                 _animator.SetBool("Kick", true);
                 golpe = true;
@@ -131,7 +132,7 @@ public class CharController : MonoBehaviour
             //Debug.Log(!(Mathf.Sign(horInput) == Mathf.Sign(direction.x) && distancia <= 1f));
 
             
-            if (horInput != 0 && ((!(Mathf.Sign(horInput) == Mathf.Sign(direction.x)  && distancia <= 1f)) || enemy.GetComponent<EnemigoController>().muerto))
+            if (horInput != 0 && ((!(Mathf.Sign(horInput) == Mathf.Sign(direction.x)  && distancia <= 1f)) || enemy.GetComponent<FirstCharController>().muerto))
             {
                 //Debug.Log(horInput);
                 movement.x = horInput * moveSpeed;
@@ -145,7 +146,7 @@ public class CharController : MonoBehaviour
             if (_charController.isGrounded)
             {
                 jump = false;
-                if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && !golpe)
+                if (Input.GetKeyDown(KeyCode.UpArrow) && !golpe)
                 {
                     _vertSpeed = jumpSpeed;
                     jump = true;
@@ -210,7 +211,7 @@ public class CharController : MonoBehaviour
         if (distancia <= 1.2 && !enemigoMuerto && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) {  enemy.SendMessage("HurtLife", IDamage); audio.PlayOneShot(punch); }
         _animator.SetBool("Kick", false);
         yield return new WaitForSeconds(.05f);
-        Debug.Log("Pongo a false en I()");
+        //Debug.Log("Pongo a false en I()");
         golpe = false;
         reached = false;
     }
@@ -228,9 +229,8 @@ public class CharController : MonoBehaviour
         _animator.SetBool("Reached", true);
         StartCoroutine(ReachReturn());
         //quitar vida
-        audio.PlayOneShot(punch);
         life -= damage;
-        Debug.Log("Hurted: " + damage.ToString() + ", Total Life: " + life.ToString());
+        //Debug.Log("Hurted: " + damage.ToString() + ", Total Life: " + life.ToString());
     }
 
     private IEnumerator ReachReturn()
@@ -246,11 +246,11 @@ public class CharController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.0000001f);
         _animator.SetBool("Win", false);
-        if (PlayerPrefs.GetString("WinPlayer2") == "Yes") PlayerPrefs.SetString("PlayerVictory", "Yes");
-        if (PlayerPrefs.GetString("WinPlayer1") == "No") PlayerPrefs.SetString("WinPlayer1", "Yes");
-        else PlayerPrefs.SetString("WinPlayer2", "Yes");
+        if (PlayerPrefs.GetString("WinEnemy2") == "Yes") PlayerPrefs.SetString("EnemyVictory", "Yes");
+        if (PlayerPrefs.GetString("WinEnemy1") == "No") PlayerPrefs.SetString("WinEnemy1", "Yes");
+        else PlayerPrefs.SetString("WinEnemy2", "Yes");
         yield return new WaitForSeconds(5);
-        if(PlayerPrefs.GetString("PlayerVictory")!="Yes")SceneManager.LoadScene("GameScene");
+        if(PlayerPrefs.GetString("EnemyVictory")!="Yes")SceneManager.LoadScene("MultiplayerScene");
     }
 
 }

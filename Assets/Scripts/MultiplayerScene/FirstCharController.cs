@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
-public class CharController : MonoBehaviour
+public class FirstCharController : MonoBehaviour
 {
     [SerializeField] private AudioSource audio;
     [SerializeField] private AudioClip punch;
     //Player Parameters
     public float life;
     public float MaxVida;
-    private bool muerto;
+    public bool muerto;
     private bool reached;
     private bool enemigoMuerto;
     
@@ -75,7 +75,7 @@ public class CharController : MonoBehaviour
                 StartCoroutine(Died());
             }
 
-            if(enemy.GetComponent<EnemigoController>().Vida <= 0 && !golpe)
+            if(enemy.GetComponent<SecondCharController>().life <= 0 && !golpe)
             {
                 enemigoMuerto = true;
                 _animator.SetBool("Win", true);
@@ -83,8 +83,9 @@ public class CharController : MonoBehaviour
             }
 
             Vector3 movement = Vector3.zero;
-            float horInput = Input.GetAxis("Horizontal");
-            //Debug.Log(horInput);
+            float horInput = 0;
+            if (Input.GetKey(KeyCode.A)) horInput = -1.0f;
+            else if (Input.GetKey(KeyCode.D)) horInput = 1.0f;
 
             //Calculo de distancias y direcciones
             distancia = Vector3.Distance(transform.position, enemy.transform.position);
@@ -107,7 +108,7 @@ public class CharController : MonoBehaviour
             {
                 _animator.SetBool("Upper", true);
                 golpe = true;
-                Debug.Log("Start");
+                //Debug.Log("Start");
                 StartCoroutine(K());
             }
 
@@ -131,7 +132,7 @@ public class CharController : MonoBehaviour
             //Debug.Log(!(Mathf.Sign(horInput) == Mathf.Sign(direction.x) && distancia <= 1f));
 
             
-            if (horInput != 0 && ((!(Mathf.Sign(horInput) == Mathf.Sign(direction.x)  && distancia <= 1f)) || enemy.GetComponent<EnemigoController>().muerto))
+            if (horInput != 0 && ((!(Mathf.Sign(horInput) == Mathf.Sign(direction.x)  && distancia <= 1f)) || enemy.GetComponent<SecondCharController>().muerto))
             {
                 //Debug.Log(horInput);
                 movement.x = horInput * moveSpeed;
@@ -145,7 +146,7 @@ public class CharController : MonoBehaviour
             if (_charController.isGrounded)
             {
                 jump = false;
-                if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W)) && !golpe)
+                if (Input.GetKeyDown(KeyCode.W) && !golpe)
                 {
                     _vertSpeed = jumpSpeed;
                     jump = true;
@@ -210,7 +211,7 @@ public class CharController : MonoBehaviour
         if (distancia <= 1.2 && !enemigoMuerto && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) {  enemy.SendMessage("HurtLife", IDamage); audio.PlayOneShot(punch); }
         _animator.SetBool("Kick", false);
         yield return new WaitForSeconds(.05f);
-        Debug.Log("Pongo a false en I()");
+        //Debug.Log("Pongo a false en I()");
         golpe = false;
         reached = false;
     }
@@ -228,9 +229,8 @@ public class CharController : MonoBehaviour
         _animator.SetBool("Reached", true);
         StartCoroutine(ReachReturn());
         //quitar vida
-        audio.PlayOneShot(punch);
         life -= damage;
-        Debug.Log("Hurted: " + damage.ToString() + ", Total Life: " + life.ToString());
+        //Debug.Log("Hurted: " + damage.ToString() + ", Total Life: " + life.ToString());
     }
 
     private IEnumerator ReachReturn()
@@ -250,7 +250,7 @@ public class CharController : MonoBehaviour
         if (PlayerPrefs.GetString("WinPlayer1") == "No") PlayerPrefs.SetString("WinPlayer1", "Yes");
         else PlayerPrefs.SetString("WinPlayer2", "Yes");
         yield return new WaitForSeconds(5);
-        if(PlayerPrefs.GetString("PlayerVictory")!="Yes")SceneManager.LoadScene("GameScene");
+        if(PlayerPrefs.GetString("PlayerVictory")!="Yes")SceneManager.LoadScene("MultiplayerScene");
     }
 
 }

@@ -71,6 +71,10 @@ public class UISeleccion : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
     }
+    public void onClickSecondAtras()
+    {
+        SceneManager.LoadScene("SelectCharacter");
+    }
 
     public void onClickSeleccionado()
     {
@@ -81,7 +85,13 @@ public class UISeleccion : MonoBehaviour
         PlayerPrefs.SetString("WinEnemy2", "No");
         PlayerPrefs.SetString("PlayerVictory", "No");
         PlayerPrefs.SetString("EnemyVictory", "No");
+        if(PlayerPrefs.GetString("Modo")== "Solo") SceneManager.LoadScene("MapSelector");
+        else if(PlayerPrefs.GetString("Modo")== "Versus") SceneManager.LoadScene("SelectSecondCharacter");
+    }
 
+    public void OnClickSecondSelected()
+    {
+        PlayerPrefs.SetString("secondCharacter", character.text);
         SceneManager.LoadScene("MapSelector");
     }
 }

@@ -11,6 +11,7 @@ public class UIGameScene : MonoBehaviour
     [SerializeField] private Scrollbar VidaPlayer;
     [SerializeField] private Scrollbar VidaEnemigo;
     [SerializeField] private WinPopUp WinPanel;
+    [SerializeField] private GameObject Mute;
 
     //Imagenes de las victorias
     [SerializeField] private Image WinPlayer1;
@@ -24,15 +25,19 @@ public class UIGameScene : MonoBehaviour
     [SerializeField] private AudioClip loseClip;
 
     private CharController player;
+    private FirstCharController first;
+    private SecondCharController second;
     private EnemigoController enemigo;
     private int MaxVidaPlayer;
     private int MaxVidaEnemigo;
 
     public void Start()
-    {
+    { 
+        Debug.Log(PlayerPrefs.GetString("Modo"));
         settingsPopUp.Close();
         character.text = PlayerPrefs.GetString("character");
-        enemy.text = "Derrick";
+        if (PlayerPrefs.GetString("Modo") == "Solo") enemy.text = "Derrick";
+        else if (PlayerPrefs.GetString("Modo") == "Versus") enemy.text = "Second " + PlayerPrefs.GetString("secondCharacter");
         WinPlayer1.gameObject.SetActive(PlayerPrefs.GetString("WinPlayer1")=="Yes");
         WinPlayer2.gameObject.SetActive(PlayerPrefs.GetString("WinPlayer2") == "Yes");
         WinEnemy1.gameObject.SetActive(PlayerPrefs.GetString("WinEnemy1") == "Yes");
@@ -47,22 +52,29 @@ public class UIGameScene : MonoBehaviour
 
     private void Update()
     {
-        if(player == null)
+        if(PlayerPrefs.GetString("Modo") == "Solo")
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>();
+            if(player == null) player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>();
+            if(enemigo == null) enemigo = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemigoController>();
+            if(player != null && enemigo != null)
+            {
+                VidaPlayer.size = player.life / player.MaxVida;
+                VidaEnemigo.size = enemigo.Vida / enemigo.MaxVida;
+            }
         }
-        if(enemigo == null)
+        else if (PlayerPrefs.GetString("Modo") == "Versus")
         {
-            enemigo = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemigoController>();
-        }
-        if(player != null && enemigo != null)
-        {
-            VidaPlayer.size = player.life / player.MaxVida;
-            VidaEnemigo.size = enemigo.Vida / enemigo.MaxVida;
-        }
+            if(first == null) first = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstCharController>();
+            if(second == null) second = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SecondCharController>();
+            if(player != null && enemigo != null)
+            {
+                VidaPlayer.size = first.life / first.MaxVida;
+                VidaEnemigo.size = second.life / second.MaxVida;
+            }
+        }   
 
         if (PlayerPrefs.GetString("EnemyVictory") == "Yes") StartCoroutine(EndGame(enemy.text));
-        if (PlayerPrefs.GetString("PlayerVictory") == "Yes") StartCoroutine(EndGame(character.text));
+        else if (PlayerPrefs.GetString("PlayerVictory") == "Yes") StartCoroutine(EndGame(character.text));
 
     }
 

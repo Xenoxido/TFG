@@ -926,6 +926,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80d8faab67bac04c88932dc5519e704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSelect: {fileID: 1502526672}
   music: {fileID: 520517022}
 --- !u!4 &857457731
 Transform:
