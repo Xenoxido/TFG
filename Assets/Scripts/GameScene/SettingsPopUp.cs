@@ -47,4 +47,9 @@ public class SettingsPopUp : MonoBehaviour
         Time.timeScale = time;
         SceneManager.LoadScene("SelectCharacter");
     }
+    public void goMapSelect()
+    {
+        Time.timeScale = time;
+        SceneManager.LoadScene("MapSelector");
+    }
 }

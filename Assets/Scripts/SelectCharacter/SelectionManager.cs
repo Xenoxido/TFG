@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
-    public Vector3 targetRot;
-    public Vector3 currentAngle;
+    
+    private Vector3 targetRot;
+    private Vector3 currentAngle;
 
     public int characterSelected;
     public int totalCharacter;

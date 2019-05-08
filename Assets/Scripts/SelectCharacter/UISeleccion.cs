@@ -6,9 +6,13 @@ using UnityEngine.UI;
 
 public class UISeleccion : MonoBehaviour
 {
+    [SerializeField] private CharController[] characters;
     [SerializeField] private GameObject selection;
     [SerializeField] private Button buttonSelection;
     [SerializeField] private Text character;
+    [SerializeField] private Text life;
+    [SerializeField] private Text strength;
+    [SerializeField] private Text speed;
     [SerializeField] private SelectionManager selectionManager;
     //[SerializeField] private Character CharacterSelect;
 
@@ -32,9 +36,29 @@ public class UISeleccion : MonoBehaviour
         if ((delay <= 90.0f && delay > (90.0f-delayRot)) || (delay < delayRot && delay > (-delayRot)))
         {
             buttonSelection.interactable = true;
-            if(selectionManager.characterSelected == 1) character.text = "Ethan";
-            else if (selectionManager.characterSelected == 2) character.text = "Atenea";
-            else character.text = "Eve";
+            if (selectionManager.characterSelected == 1)
+            {
+                character.text = "Ethan";
+                life.text = "Life: " + characters[0].life.ToString();
+                strength.text = "Strength: " + ((characters[0].JDamage + characters[0].KDamage + characters[0].UDamage + characters[0].IDamage) / 4.0f).ToString();
+                speed.text = "Speed: " + (100-((characters[0].Jtime + characters[0].Ktime + characters[0].Utime + characters[0].Itime)*10)).ToString();
+
+            }
+            else if (selectionManager.characterSelected == 2)
+            {
+                character.text = "Atenea";
+                life.text = "Life: " + characters[1].life.ToString();
+                strength.text = "Strength: " + ((characters[1].JDamage + characters[1].KDamage + characters[1].UDamage + characters[1].IDamage) / 4.0f).ToString();
+                speed.text = "Speed: " + (100-((characters[1].Jtime + characters[1].Ktime + characters[1].Utime + characters[1].Itime)*10)).ToString();
+            }
+            else
+            {
+                character.text = "Eve";
+                life.text = "Life: " + characters[2].life.ToString();
+                strength.text = "Strength: " + ((characters[2].JDamage + characters[2].KDamage + characters[2].UDamage + characters[2].IDamage) / 4.0f).ToString();
+                speed.text = "Speed: " + (100-((characters[2].Jtime + characters[2].Ktime + characters[2].Utime + characters[2].Itime)*10)).ToString();
+
+            }
         }
         else
         {

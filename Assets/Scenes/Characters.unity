@@ -218,8 +218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbce567f746d7df4f84cb832b14ec97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRot: {x: 0, y: 0, z: 0}
-  currentAngle: {x: 0, y: 0, z: 0}
   characterSelected: 0
   totalCharacter: 0
   music: {fileID: 1999657092}
@@ -604,7 +602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &934688828
 RectTransform:
   m_ObjectHideFlags: 0

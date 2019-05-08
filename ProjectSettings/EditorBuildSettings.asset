@@ -15,18 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SelectCharacter.unity
     guid: def6a18baa9e34745b5e342d5af4f627
   - enabled: 1
-    path: Assets/Scenes/CharactersView.unity
-    guid: 39873ea4cb6fb44418527d52fa79d21b
-  - enabled: 1
-    path: Assets/Scenes/Controls.unity
-    guid: 6c443e8bb2b46fb46aabd31f5cf8a63b
-  - enabled: 1
-    path: Assets/Scenes/Credits.unity
-    guid: bebd2e16cee0bc0419a36c8a58d95d57
-  - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 917b1342db0d3ff4d982b324bc55efcb
   - enabled: 1
     path: Assets/Scenes/MapSelector.unity
     guid: cc615bf06bea9464893a4e51c6e38746
+  - enabled: 1
+    path: Assets/Scenes/Characters.unity
+    guid: 658e7d494e0c825418f3e82f6ea628e9
   m_configObjects: {}

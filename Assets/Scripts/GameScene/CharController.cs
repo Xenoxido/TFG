@@ -16,7 +16,7 @@ public class CharController : MonoBehaviour
     private bool enemigoMuerto;
     
     //Physics Parameters
-    private float moveSpeed = 6.0f;
+    public float moveSpeed = 6.0f;
     private CharacterController _charController;
     private Animator _animator;
     public float jumpSpeed = 15.0f;
@@ -62,16 +62,11 @@ public class CharController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemy == null)
+        if (enemy == null)
         {
             enemy = GameObject.FindGameObjectWithTag("Enemy");
 
-        }
-        if (reached)
-        {
-
-        }
-        else if (!muerto && !enemigoMuerto && !reached)
+        }else if (!muerto && !enemigoMuerto && !reached)
         {
             if (life <= 0)
             {
@@ -180,7 +175,7 @@ public class CharController : MonoBehaviour
     private IEnumerator J()
     {
         yield return new WaitForSeconds(Jtime);
-        if (distancia <= 1.2 && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) { enemy.SendMessage("HurtLife", JDamage); audio.PlayOneShot(punch); }
+        if (distancia <= 1.2 && !enemigoMuerto && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) { enemy.SendMessage("HurtLife", JDamage); audio.PlayOneShot(punch); }
         _animator.SetBool("Hoop", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;
@@ -190,7 +185,7 @@ public class CharController : MonoBehaviour
     private IEnumerator K()
     {
         yield return new WaitForSeconds(Ktime);
-        if (distancia <= 1.2 && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) { enemy.SendMessage("HurtLife", KDamage); audio.PlayOneShot(punch); }
+        if (distancia <= 1.2 && !enemigoMuerto && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) { enemy.SendMessage("HurtLife", KDamage); audio.PlayOneShot(punch); }
         _animator.SetBool("Upper", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;
@@ -200,7 +195,7 @@ public class CharController : MonoBehaviour
     private IEnumerator U()
     {
         yield return new WaitForSeconds(Utime);
-        if (distancia <= 1.2 && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) { enemy.SendMessage("HurtLife", UDamage); audio.PlayOneShot(punch); }
+        if (distancia <= 1.2 && !enemigoMuerto && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) { enemy.SendMessage("HurtLife", UDamage); audio.PlayOneShot(punch); }
         _animator.SetBool("LowKick", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;
@@ -211,9 +206,10 @@ public class CharController : MonoBehaviour
     {
         
         yield return new WaitForSeconds(Itime);
-        if (distancia <= 1.2 && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) {  enemy.SendMessage("HurtLife", IDamage); audio.PlayOneShot(punch); }
+        if (distancia <= 1.2 && !enemigoMuerto && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) {  enemy.SendMessage("HurtLife", IDamage); audio.PlayOneShot(punch); }
         _animator.SetBool("Kick", false);
         yield return new WaitForSeconds(.05f);
+        Debug.Log("Pongo a false en I()");
         golpe = false;
         reached = false;
     }
@@ -227,10 +223,6 @@ public class CharController : MonoBehaviour
     public void HurtLife(int damage)
     {
         //animacion golpe
-        StopCoroutine(J());
-        StopCoroutine(K());
-        StopCoroutine(U());
-        StopCoroutine(I());
         reached = true;
         _animator.SetBool("Reached", true);
         StartCoroutine(ReachReturn());
@@ -245,7 +237,6 @@ public class CharController : MonoBehaviour
         yield return new WaitForSeconds(0.0000001f);
         _animator.SetBool("Reached", false);
         yield return new WaitForSeconds(0.5f);
-        //if(!golpe)
         if(!golpe)reached = false;
 
     }
