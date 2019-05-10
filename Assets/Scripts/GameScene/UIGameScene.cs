@@ -66,7 +66,7 @@ public class UIGameScene : MonoBehaviour
         {
             if(first == null) first = GameObject.FindGameObjectWithTag("Player").GetComponent<FirstCharController>();
             if(second == null) second = GameObject.FindGameObjectWithTag("Enemy").GetComponent<SecondCharController>();
-            if(player != null && enemigo != null)
+            if(first != null && second != null)
             {
                 VidaPlayer.size = first.life / first.MaxVida;
                 VidaEnemigo.size = second.life / second.MaxVida;

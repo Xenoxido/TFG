@@ -2383,6 +2383,7 @@ MonoBehaviour:
   VidaPlayer: {fileID: 87097281}
   VidaEnemigo: {fileID: 1456791319}
   WinPanel: {fileID: 1491209647}
+  Mute: {fileID: 0}
   WinPlayer1: {fileID: 520811935}
   WinPlayer2: {fileID: 989422996}
   WinEnemy1: {fileID: 1721164691}
@@ -4223,10 +4224,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2002138405}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6624a0068110546418dd438262e7f3d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 22eac49c889617b44badae3c571463b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetY: 1
+  offsetZ: -4
   smoothTime: 0.2
 --- !u!1 &2031845499
 GameObject:
