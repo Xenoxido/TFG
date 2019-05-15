@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIGameScene : MonoBehaviour
@@ -26,8 +27,11 @@ public class UIGameScene : MonoBehaviour
     private int MaxVidaPlayer;
     private int MaxVidaEnemigo;
 
+    private float time;
+
     public void Start()
-    { 
+    {
+        time = Time.timeScale;
         Debug.Log(PlayerPrefs.GetString("Modo"));
         settingsPopUp.Close();
         character.text = PlayerPrefs.GetString("character");
@@ -47,7 +51,12 @@ public class UIGameScene : MonoBehaviour
 
     private void Update()
     {
-        if(PlayerPrefs.GetString("Modo") == "Solo")
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = time;
+            SceneManager.LoadScene("MapSelector");
+        }
+        if (PlayerPrefs.GetString("Modo") == "Solo")
         {
             if(player == null) player = GameObject.FindGameObjectWithTag("Player").GetComponent<CharController>();
             if(enemigo == null) enemigo = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemigoController>();

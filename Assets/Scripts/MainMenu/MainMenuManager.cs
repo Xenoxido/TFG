@@ -9,6 +9,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject music;
     [SerializeField] private GameObject modoPanel;
     [SerializeField] private GameObject mainPanel;
+    private bool modeSelect;
     private void Awake()
     {
         if (GameObject.FindGameObjectWithTag("BattleSound") != null) Destroy(GameObject.FindGameObjectWithTag("BattleSound"));
@@ -18,6 +19,7 @@ public class MainMenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        modeSelect = false;
         modoPanel.SetActive(false);
         mainPanel.SetActive(true);
     }
@@ -25,6 +27,21 @@ public class MainMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape) && !modeSelect)
+        {
+            Application.Quit();
+        }else if (Input.GetKeyDown(KeyCode.Escape) && modeSelect)
+        {
+            Close();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return) && !modeSelect)
+        {
+            Open();
+        }else if(Input.GetKeyDown(KeyCode.Return) && modeSelect)
+        {
+            OnClickSolo();
+        }
         
     }
 
@@ -35,12 +52,14 @@ public class MainMenuManager : MonoBehaviour
 
     public void Open()
     {
+        modeSelect = true;
         modoPanel.SetActive(true);
         mainPanel.SetActive(false);
 
     }
     public void Close()
     {
+        modeSelect = false;
         mainPanel.SetActive(true);
         modoPanel.SetActive(false);
     }

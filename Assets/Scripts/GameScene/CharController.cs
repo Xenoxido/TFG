@@ -210,7 +210,6 @@ public class CharController : MonoBehaviour
         if (distancia <= 1.2 && !enemigoMuerto && !muerto && !reached && enemy != null && Mathf.Sign(transform.rotation.y) == Mathf.Sign(dirX)) {  enemy.SendMessage("HurtLife", IDamage); audio.PlayOneShot(punch); }
         _animator.SetBool("Kick", false);
         yield return new WaitForSeconds(.05f);
-        Debug.Log("Pongo a false en I()");
         golpe = false;
         reached = false;
     }
@@ -223,6 +222,10 @@ public class CharController : MonoBehaviour
 
     public void HurtLife(int damage)
     {
+        StopCoroutine(J());
+        StopCoroutine(K());
+        StopCoroutine(U());
+        StopCoroutine(I());
         //animacion golpe
         reached = true;
         _animator.SetBool("Reached", true);

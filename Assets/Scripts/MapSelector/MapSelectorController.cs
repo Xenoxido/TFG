@@ -18,6 +18,16 @@ public class MapSelectorController : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OnClickAtras();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            OnClickSelection();
+        }
+
         if (name == null) mapSelect.interactable = false;
         else mapSelect.interactable = true;
     }
@@ -32,7 +42,13 @@ public class MapSelectorController : MonoBehaviour
         if(name != null)
         {
             PlayerPrefs.SetString("map", name);
-            if(PlayerPrefs.GetString("Modo")=="Solo") SceneManager.LoadScene("GameScene");
+            PlayerPrefs.SetString("WinPlayer1", "No");
+            PlayerPrefs.SetString("WinPlayer2", "No");
+            PlayerPrefs.SetString("WinEnemy1", "No");
+            PlayerPrefs.SetString("WinEnemy2", "No");
+            PlayerPrefs.SetString("PlayerVictory", "No");
+            PlayerPrefs.SetString("EnemyVictory", "No");
+            if (PlayerPrefs.GetString("Modo")=="Solo") SceneManager.LoadScene("GameScene");
             else if(PlayerPrefs.GetString("Modo")=="Versus") SceneManager.LoadScene("MultiplayerScene");
         }
     }

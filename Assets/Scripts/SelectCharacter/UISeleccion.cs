@@ -14,6 +14,7 @@ public class UISeleccion : MonoBehaviour
     [SerializeField] private Text strength;
     [SerializeField] private Text speed;
     [SerializeField] private SelectionManager selectionManager;
+    public bool second = false;
     //[SerializeField] private Character CharacterSelect;
 
     private float delayRot;
@@ -26,7 +27,25 @@ public class UISeleccion : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {       
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !second)
+        {
+            onClickAtras();
+        }
+        else if (Input.GetKeyDown(KeyCode.Escape) && second)
+        {
+            onClickSecondAtras();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return) && !second && buttonSelection.gameObject.active)
+        {
+            onClickSeleccionado();
+        }
+        else if (Input.GetKeyDown(KeyCode.Return) && second)
+        {
+            OnClickSecondSelected();
+        }
+
         float angleRot = selection.transform.eulerAngles.y;
         float delay = angleRot % 90;
         //Debug.Log("Rotation: " + delay);
@@ -92,6 +111,12 @@ public class UISeleccion : MonoBehaviour
     public void OnClickSecondSelected()
     {
         PlayerPrefs.SetString("secondCharacter", character.text);
+        PlayerPrefs.SetString("WinPlayer1", "No");
+        PlayerPrefs.SetString("WinPlayer2", "No");
+        PlayerPrefs.SetString("WinEnemy1", "No");
+        PlayerPrefs.SetString("WinEnemy2", "No");
+        PlayerPrefs.SetString("PlayerVictory", "No");
+        PlayerPrefs.SetString("EnemyVictory", "No");
         SceneManager.LoadScene("MapSelector");
     }
 }

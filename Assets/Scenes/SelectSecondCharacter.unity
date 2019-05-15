@@ -1834,6 +1834,7 @@ MonoBehaviour:
   strength: {fileID: 628201632}
   speed: {fileID: 272286887}
   selectionManager: {fileID: 411455600}
+  second: 1
 --- !u!4 &1814440219
 Transform:
   m_ObjectHideFlags: 0
