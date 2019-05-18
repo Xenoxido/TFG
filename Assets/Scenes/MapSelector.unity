@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: d9dca9ae1786c394f9e79c637aa9a7bf, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.70185214, g: 0.78017825, b: 0.7678964, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e85693faa12494984acb64a8c2235d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Beach
-  mat: {fileID: 2100000, guid: aeb4e03400d4600428b15cf15aa970ec, type: 2}
+  name: Highlands
+  mat: {fileID: 2100000, guid: e2341a9d03e86ec4290c72b1e22bbc7c, type: 2}
   text: {fileID: 236684026}
   mapSelector: {fileID: 857457730}
 --- !u!114 &153214729
@@ -241,7 +241,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: db154a0aa0bc33f40a1af04c3194d894, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a99944953937c04cb9cf78919637490, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -595,8 +595,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e85693faa12494984acb64a8c2235d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Aurora
-  mat: {fileID: 2100000, guid: 45f22ab50d8f5d64999a9027ce6529fd, type: 2}
+  name: Stratosphere
+  mat: {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
   text: {fileID: 968545467}
   mapSelector: {fileID: 857457730}
 --- !u!114 &552760569
@@ -672,7 +672,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 14f74ce841746aa4caa8e3838d14b53a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e60ba4a96892ac409f4e5649b6434f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1063,8 +1063,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e85693faa12494984acb64a8c2235d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Castle
-  mat: {fileID: 2100000, guid: 47836ab29c4533d48b005ea1163cb12f, type: 2}
+  name: MegaSun
+  mat: {fileID: 2100000, guid: c52c5d7968fa6c9499b0b5752f899bfb, type: 2}
   text: {fileID: 1497077858}
   mapSelector: {fileID: 857457730}
 --- !u!114 &952045789
@@ -1140,7 +1140,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 145cad7038ae8074a9a1102dbe0933f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9c7588f7b9b5ec942a24a13ebbab343c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1973,8 +1973,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21e85693faa12494984acb64a8c2235d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: AnotherPlanet
-  mat: {fileID: 2100000, guid: 668927899f4c26040949e60bbb1f8210, type: 2}
+  name: UnearthlyRed
+  mat: {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
   text: {fileID: 1763007558}
   mapSelector: {fileID: 857457730}
 --- !u!114 &1629431775
@@ -2050,7 +2050,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 444205fffba32864fbb6140e01e84d87, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c2c331921f74a734b930d283838cf48d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

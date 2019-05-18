@@ -1679,11 +1679,11 @@ MonoBehaviour:
   fight: {fileID: 8300000, guid: 6282420b1c68a02428c1470f579cb61e, type: 3}
   skyboxes:
   - {fileID: 2100000, guid: 765a1025fec3a0c4e9ee4b52ced86876, type: 2}
-  - {fileID: 2100000, guid: 47836ab29c4533d48b005ea1163cb12f, type: 2}
+  - {fileID: 2100000, guid: c52c5d7968fa6c9499b0b5752f899bfb, type: 2}
   - {fileID: 2100000, guid: 40dd722e201b50d4fa6d26d78656226c, type: 2}
-  - {fileID: 2100000, guid: aeb4e03400d4600428b15cf15aa970ec, type: 2}
-  - {fileID: 2100000, guid: 668927899f4c26040949e60bbb1f8210, type: 2}
-  - {fileID: 2100000, guid: 45f22ab50d8f5d64999a9027ce6529fd, type: 2}
+  - {fileID: 2100000, guid: e2341a9d03e86ec4290c72b1e22bbc7c, type: 2}
+  - {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
+  - {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
   ethan1: {fileID: 547014154, guid: d9c6445a80cfb1b4ca8e41a5e26bbbe5, type: 3}
   atenea1: {fileID: 1549313904, guid: 26d8d5d549a0a0c4893c8c100c9a3643, type: 3}
   eve1: {fileID: 1304755098, guid: 1ee3b0d1d931b3642ae141fb72c7c3a9, type: 3}
@@ -3315,7 +3315,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824466497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -9}
   m_LocalScale: {x: 10, y: 1, z: 3}
   m_Children:
   - {fileID: 1484919852}

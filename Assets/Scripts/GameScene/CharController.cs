@@ -39,6 +39,8 @@ public class CharController : MonoBehaviour
     public float UDamage;
     public float IDamage;
 
+    private Coroutine co;
+
 
     //Ya no se usan estos bools
     //bool hoop = false, upper = false, lowkick = false, kick = false,
@@ -100,7 +102,7 @@ public class CharController : MonoBehaviour
             {
                 _animator.SetBool("Hoop", true);
                 golpe = true;
-                StartCoroutine(J());
+                co = StartCoroutine(J());
             }
 
             if (Input.GetKeyDown(KeyCode.K) && !jump && !golpe && !reached) //Reconocimiento de la patada, la corutina lo para
@@ -108,21 +110,21 @@ public class CharController : MonoBehaviour
                 _animator.SetBool("Upper", true);
                 golpe = true;
                 Debug.Log("Start");
-                StartCoroutine(K());
+                co = StartCoroutine(K());
             }
 
             if (Input.GetKeyDown(KeyCode.U) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
             {
                 _animator.SetBool("LowKick", true);
                 golpe = true;
-                StartCoroutine(U());
+                co = StartCoroutine(U());
             }
 
             if (Input.GetKeyDown(KeyCode.I) && !jump && !golpe) //Reconocimiento de la patada, la corutina lo para
             {
                 _animator.SetBool("Kick", true);
                 golpe = true;
-                StartCoroutine(I());
+                co = StartCoroutine(I());
             }
 
             if (golpe) horInput = 0.0f;
@@ -180,7 +182,6 @@ public class CharController : MonoBehaviour
         _animator.SetBool("Hoop", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;
-        reached = false;
     }
 
     private IEnumerator K()
@@ -190,7 +191,6 @@ public class CharController : MonoBehaviour
         _animator.SetBool("Upper", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;
-        reached = false;
     }
 
     private IEnumerator U()
@@ -200,7 +200,6 @@ public class CharController : MonoBehaviour
         _animator.SetBool("LowKick", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;
-        reached = false;
     }
     
     private IEnumerator I()
@@ -211,7 +210,6 @@ public class CharController : MonoBehaviour
         _animator.SetBool("Kick", false);
         yield return new WaitForSeconds(.05f);
         golpe = false;
-        reached = false;
     }
 
     private IEnumerator Died()
@@ -222,10 +220,7 @@ public class CharController : MonoBehaviour
 
     public void HurtLife(int damage)
     {
-        StopCoroutine(J());
-        StopCoroutine(K());
-        StopCoroutine(U());
-        StopCoroutine(I());
+        if (co != null) StopCoroutine(co);
         //animacion golpe
         reached = true;
         _animator.SetBool("Reached", true);
@@ -240,8 +235,13 @@ public class CharController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.0000001f);
         _animator.SetBool("Reached", false);
+        _animator.SetBool("Hoop", false);
+        _animator.SetBool("Upper", false);
+        _animator.SetBool("LowKick", false);
+        _animator.SetBool("Kick", false);
         yield return new WaitForSeconds(0.5f);
-        if(!golpe)reached = false;
+        reached = false;
+        golpe = false;
 
     }
 

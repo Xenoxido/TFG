@@ -2441,12 +2441,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 845b003794b9e894682289f62cb4065e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Vida: 100
+  Vida: 750
   anim: {fileID: 2047229239}
   nav: {fileID: 2047229235}
   player: {fileID: 0}
   target: {fileID: 0}
-  ataque: 100
+  ataque: 90
   AtacBool: 0
   character: {fileID: 2047229237}
   distancia: 0

@@ -36,19 +36,19 @@ public class GameController : MonoBehaviour
             case "BlueFreeze":
                 RenderSettings.skybox = skyboxes[0];
                 break;
-            case "Castle":
+            case "MegaSun":
                 RenderSettings.skybox = skyboxes[1];
                 break;
             case "DarkCity":
                 RenderSettings.skybox = skyboxes[2];
                 break;
-            case "Beach":
+            case "Highlands":
                 RenderSettings.skybox = skyboxes[3];
                 break;
-            case "AnotherPlanet":
+            case "UnearthlyRed":
                 RenderSettings.skybox = skyboxes[4];
                 break;
-            case "Aurora":
+            case "Stratosphere":
                 RenderSettings.skybox = skyboxes[5];
                 break;
             default:

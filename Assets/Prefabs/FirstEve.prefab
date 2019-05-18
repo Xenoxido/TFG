@@ -1661,6 +1661,7 @@ MonoBehaviour:
   punch: {fileID: 8300000, guid: d0260b5f2264e6545a240464ad865486, type: 3}
   life: 300
   MaxVida: 0
+  muerto: 0
   moveSpeed: 6
   jumpSpeed: 15
   gravity: -9.8
@@ -1670,10 +1671,10 @@ MonoBehaviour:
   Ktime: 0.9
   Utime: 0.9
   Itime: 1.5
-  JDamage: 20
-  KDamage: 20
+  JDamage: 40
+  KDamage: 50
   UDamage: 40
-  IDamage: 50
+  IDamage: 100
 --- !u!82 &9082269854286258018
 AudioSource:
   m_ObjectHideFlags: 0

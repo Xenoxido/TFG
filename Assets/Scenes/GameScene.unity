@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.21548554, g: 0.22447196, b: 0.16525075, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1563,11 +1563,11 @@ MonoBehaviour:
   fight: {fileID: 8300000, guid: 2bf9338a5a3013240b932dbe5f2f94ca, type: 3}
   skyboxes:
   - {fileID: 2100000, guid: 765a1025fec3a0c4e9ee4b52ced86876, type: 2}
-  - {fileID: 2100000, guid: 47836ab29c4533d48b005ea1163cb12f, type: 2}
+  - {fileID: 2100000, guid: c52c5d7968fa6c9499b0b5752f899bfb, type: 2}
   - {fileID: 2100000, guid: 40dd722e201b50d4fa6d26d78656226c, type: 2}
-  - {fileID: 2100000, guid: aeb4e03400d4600428b15cf15aa970ec, type: 2}
-  - {fileID: 2100000, guid: 668927899f4c26040949e60bbb1f8210, type: 2}
-  - {fileID: 2100000, guid: 45f22ab50d8f5d64999a9027ce6529fd, type: 2}
+  - {fileID: 2100000, guid: e2341a9d03e86ec4290c72b1e22bbc7c, type: 2}
+  - {fileID: 2100000, guid: 5d133deeaa66ed445853e946ff25e073, type: 2}
+  - {fileID: 2100000, guid: 16bc8a9d5451ca44d8f70575adbece3a, type: 2}
   ethan: {fileID: 547014154, guid: 78bdf267466105b44b5b485662b935d1, type: 3}
   atenea: {fileID: 1549313904, guid: 530496c240390924b89c6a809465d5b7, type: 3}
   eve: {fileID: 1304755098, guid: 2bbcb0eb9fa83184280a6a9993afa31d, type: 3}
@@ -2911,7 +2911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 824466497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -9}
   m_LocalScale: {x: 10, y: 1, z: 3}
   m_Children:
   - {fileID: 1484919852}
