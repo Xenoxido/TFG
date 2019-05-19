@@ -9,7 +9,10 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject music;
     [SerializeField] private GameObject modoPanel;
     [SerializeField] private GameObject mainPanel;
+    [SerializeField] private GameObject control;
+    [SerializeField] private GameObject credits;
     private bool modeSelect;
+    private bool popUpOpen;
     private void Awake()
     {
         if (GameObject.FindGameObjectWithTag("BattleSound") != null) Destroy(GameObject.FindGameObjectWithTag("BattleSound"));
@@ -20,6 +23,7 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         modeSelect = false;
+        popUpOpen = false;
         modoPanel.SetActive(false);
         mainPanel.SetActive(true);
     }
@@ -27,9 +31,16 @@ public class MainMenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(popUpOpen);
         if (Input.GetKeyDown(KeyCode.Escape) && !modeSelect)
         {
-            Application.Quit();
+            if (popUpOpen)
+            {
+                control.SetActive(false);
+                credits.SetActive(false);
+                popUpOpen = false;
+            }
+            else Application.Quit();
         }else if (Input.GetKeyDown(KeyCode.Escape) && modeSelect)
         {
             Close();
@@ -42,6 +53,7 @@ public class MainMenuManager : MonoBehaviour
         {
             OnClickSolo();
         }
+
         
     }
 
@@ -73,6 +85,14 @@ public class MainMenuManager : MonoBehaviour
     {
         PlayerPrefs.SetString("Modo", "Versus");
         loaderScene("SelectCharacter");
+    }
+    public void OnOpenPopUp()
+    {
+        popUpOpen = true;
+    }
+    public void OnClosePopUp()
+    {
+        popUpOpen = false;
     }
 
 }

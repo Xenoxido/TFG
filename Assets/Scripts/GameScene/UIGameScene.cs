@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIGameScene : MonoBehaviour
 {
     [SerializeField] private SettingsPopUp settingsPopUp;
+    [SerializeField] private ControlsPopUp controlsPopUp;
     [SerializeField] private Text character;
     [SerializeField] private Text enemy;
     [SerializeField] private Scrollbar VidaPlayer;
@@ -29,9 +30,14 @@ public class UIGameScene : MonoBehaviour
 
     private float time;
 
+    private bool pause;
+    private bool controls;
+
     public void Start()
     {
         time = Time.timeScale;
+        pause = false;
+        controls = false;
         Debug.Log(PlayerPrefs.GetString("Modo"));
         settingsPopUp.Close();
         character.text = PlayerPrefs.GetString("character");
@@ -46,6 +52,7 @@ public class UIGameScene : MonoBehaviour
 
     public void Pause()
     {
+        pause = true;
         settingsPopUp.Open();
     }
 
@@ -53,8 +60,24 @@ public class UIGameScene : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = time;
-            SceneManager.LoadScene("MapSelector");
+
+            if (pause && !controls)
+            {
+                Time.timeScale = time;
+                settingsPopUp.Close();
+                pause = false;
+            }
+            else if (!pause)
+            {
+                Time.timeScale = time;
+                SceneManager.LoadScene("MapSelector");
+            }
+            if (controls)
+            {
+                controlsPopUp.Close();
+                controls = false;
+            }
+            
         }
         if (PlayerPrefs.GetString("Modo") == "Solo")
         {
@@ -86,6 +109,19 @@ public class UIGameScene : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         WinPanel.Open(winner);
+    }
+
+    public void OnBackPause()
+    {
+        pause = false;
+    }
+    public void OnControls()
+    {
+        controls = true;
+    }
+    public void OnBackControls()
+    {
+        controls = false;
     }
 
 }
